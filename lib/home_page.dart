@@ -19,13 +19,44 @@ class HomePageState extends State<HomePage>{
     });
   }
 
+  void doSub() {
+    setState(() {
+      num1 = int.parse(t1.text);
+      num2 = int.parse(t2.text);
+      sum = num1 - num2;
+    });
+  }
+
+  void doMul() {
+    setState(() {
+      num1 = int.parse(t1.text);
+      num2 = int.parse(t2.text);
+      sum = num1 * num2;
+    });
+  }
+
+  void doDiv() {
+    setState(() {
+      num1 = int.parse(t1.text);
+      num2 = int.parse(t2.text);
+      sum = num1 ~/ num2;
+    });
+  }
+
+  void doClear() {
+    setState(() {
+      t1.text = "0";
+      t2.text = "0";
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
         title: new Text("Calculator"),
       ),
-      body: new Container(
+      body: new SingleChildScrollView(
         padding: const EdgeInsets.all(40.0),
         child: new Column(
           mainAxisAlignment:  MainAxisAlignment.center,
@@ -55,13 +86,13 @@ class HomePageState extends State<HomePage>{
               children: <Widget>[
                 new MaterialButton(
                   child: new Text("+"),
-                  color: Colors.greenAccent,
-                  onPressed: (){},
+                  color: Colors.deepOrange,
+                  onPressed: doAddition,
                 ),
                  new MaterialButton(
                   child: new Text("-"),
-                  color: Colors.greenAccent,
-                  onPressed: (){},
+                  color: Colors.deepOrange,
+                  onPressed: doSub,
                 ),
               ],
             ),
@@ -70,17 +101,29 @@ class HomePageState extends State<HomePage>{
             ),
             new Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
               children: <Widget>[
                 new MaterialButton(
                   child: new Text("*"),
-                  color: Colors.greenAccent,
-                  onPressed: (){},
+                  color: Colors.deepOrange,
+                  onPressed: doMul,
                 ),
                  new MaterialButton(
                   child: new Text("/"),
-                  color: Colors.greenAccent,
-                  onPressed: (){},
+                  color: Colors.deepOrange,
+                  onPressed: doDiv,
+                ),
+              ],
+            ),
+            new Padding(
+              padding: const EdgeInsets.only(top: 20.0),
+            ),
+            new Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                new MaterialButton(
+                  child: new Text("Clear"),
+                  color: Colors.deepPurple,
+                  onPressed: doClear,
                 ),
               ],
             ),
